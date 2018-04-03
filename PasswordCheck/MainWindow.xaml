@@ -1,0 +1,34 @@
+﻿<Window x:Class="PasswordCheck.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:PasswordCheck"
+        mc:Ignorable="d"
+        Title="Search Password Database" Height="350" Width="525">
+  <Grid Margin="8,8,8,8">
+    <Grid.RowDefinitions>
+      <RowDefinition Height="25"/>
+      <RowDefinition Height="1*"/>
+    </Grid.RowDefinitions>
+
+    <Label Content="Password:"/>
+    <TextBox x:Name="PasswordInput" Margin="75,0,100,0" KeyDown="PasswordInput_KeyDown"/>
+    <Button Content="Check" Width="75" HorizontalAlignment="Right" Click="Button_Click"/>
+
+    <DataGrid Grid.Row="1" Margin="0,8,0,0" x:Name="CheckedPasswords" AutoGenerateColumns="False" IsReadOnly="True" SelectionUnit="Cell">
+      <DataGrid.Columns>
+        <DataGridTextColumn Header="Pasword" Binding="{Binding Path=Password}" Width="60*" MinWidth="50" />
+        <DataGridTextColumn Header="Frequency" Binding="{Binding Path=Count}" Width="40*" MinWidth="50" />
+        <DataGridTemplateColumn Width="25">
+          <DataGridTemplateColumn.CellTemplate>
+            <DataTemplate>
+              <Button Content="&#x2716;" Click="RemovePassword_Click" Tag="{Binding}"/>
+            </DataTemplate>
+          </DataGridTemplateColumn.CellTemplate>
+        </DataGridTemplateColumn>
+      </DataGrid.Columns>
+    </DataGrid>
+
+  </Grid>
+</Window>
